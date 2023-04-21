@@ -90,7 +90,7 @@ data_signal_matches = pd.DataFrame({"Field": ['Data Signal Matches', 'Data Signa
                                 ,"Percent" :[0.93, 0.87, 0.84, 0.96, 0.75  ]
                                 ,"Value": [70, 65, 63, 72, 56]})
 
-plot_title = alt.TitleParams("Data Signal Matches",dx=100)
+plot_title = alt.TitleParams("Data Signal Matches",dx=90)
 bars2 = alt.Chart(data_signal_matches, title= plot_title
 ).transform_joinaggregate(
     TotalValue='sum(Value)',
