@@ -254,6 +254,7 @@ hexbin= alt.Chart(source, title=plot_title).mark_point(size=size*(size/2), shape
     # Exact scaling factors to make the hexbins fit
     width=size * xFeaturesCount * 2 *0.985,
     height=size * yFeaturesCount * 1.7320508076 *0.985,  # 1.7320508076 is approx. sin(60°)*2
+    padding={'left':5,'right':10}  # 1.7320508076 is approx. sin(60°)*2
 ).configure_view(
     strokeWidth=0
 )
@@ -383,9 +384,9 @@ with col1:
     st.header("  ")
     
     st.altair_chart(graph5, use_container_width=True)
-    st.header("  ")
-    st.header("  ")
-    st.header("  ")
+    # st.header("  ")
+    # st.header("  ")
+    # st.header("  ")
     # st.header("  ")
     # graph9
     #source_h
