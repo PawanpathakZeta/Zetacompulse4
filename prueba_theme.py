@@ -275,7 +275,7 @@ hexbin= alt.Chart(source, title=plot_title).mark_point(size=size*(size/2), shape
     #stroke=alt.value('black'),
     strokeWidth=alt.value(0.2),
 
-    fill=alt.Color('mean(CLICK_COUNT):Q',  legend=alt.Legend(title='Key')), #scale =
+    fill=alt.Color('mean(CLICK_COUNT):Q',  legend=alt.Legend(title='Click Count')), #scale =
     # fill=alt.Color('mean(CLICK_COUNT):Q'), #scale = 
     tooltip=['LAST_CLICK_DATE:O', 'LAST_CLICK_DAY:O', 'mean(CLICK_COUNT):Q']
 ).transform_calculate(
