@@ -168,7 +168,7 @@ width=1200 # controls width of bar.
 graph3 = stream3
 
 # 4. 2D Histogram Scatter Plot
-plot_title = alt.TitleParams("Price Sensitivity Scores Across Age and Income Band",dx=80)
+plot_title = alt.TitleParams("Price Sensitivity Scores Across Age and Income Band",dx=40)
 source =pd.read_csv('bubble_chart.csv')
 hist4 =alt.Chart(source, title=plot_title).mark_circle(color="#0905AF").encode(
     alt.X('Income bins', bin=True, axis=alt.Axis(title='Income bins(K)')),
