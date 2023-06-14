@@ -389,9 +389,9 @@ with col1:
     
     st.altair_chart(graph5, use_container_width=True)
     # st.header("  ")
-    # st.header("  ")
-    # st.header("  ")
-    # st.header("  ")
+    st.header("  ")
+    st.header("  ")
+    st.header("  ")
     # graph9
     #source_h
     # st.text(".               Optimal channel mix and strategy for customer base")
