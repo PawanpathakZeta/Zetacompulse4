@@ -128,7 +128,11 @@ text2 = bars2.mark_text(
     ,color = alt.value("#0905AF")
 )
 
-graph2 = (bars2+text2)
+graph2 = (bars2+text2).properties(
+width=800 # controls width of bar.
+, height=400  # height of the table
+,padding={'right':-35}
+)
 
 
 
