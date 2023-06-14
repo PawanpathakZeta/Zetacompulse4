@@ -53,23 +53,30 @@ col2.image(zeta_logo)
 
 # 1. Pie chart
 
-match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
-plot_title = alt.TitleParams("Match distribution",dx=65)
+match_rate = pd.DataFrame({"values": ['v_match_email', 'iv_match_phone', 'iii_match_name', 'ii_unmatch','i_unknown'],"values1": [1800, 1404, 675, 469,200]})
+# match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
+plot_title = alt.TitleParams("Match distribution",dx=80)
 pie1=alt.Chart(match_rate).mark_arc(innerRadius=15, stroke="#fff").encode(
-    theta=alt.Theta("Count:Q", stack=True),
-    radius=alt.Radius("Count", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
-    order=alt.Order("Count",type="quantitative", sort= "ascending"),
-    color=alt.Color("Match Category:N")
+    theta=alt.Theta("values1", stack=True),
+    radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
+    color=alt.Color("values")
+    # tooltip=["values", "values1"] ## Displays tooltip
 ).properties(
     height=400, width=400,
     title=plot_title
 )
-graph1 = pie1.mark_arc(innerRadius=20, stroke="#fff")
+# pie1.configure_title(
+#     fontSize=20,
+#     font='Courier',
+#     anchor='start',
+#     color='gray',
+#     # subtitlePadding=20,
+#     dx=200
+# )
+c1 = pie1.mark_arc(innerRadius=20, stroke="#fff")
 
-# c1 = pie1.mark_arc(innerRadius=20, stroke="#fff")
 
-
-# graph1= c1
+graph1= c1
 
 #graph1= pie
 
@@ -96,7 +103,6 @@ alt.Color("Field metric:N", )
 ).properties(
 width=800 # controls width of bar.
 , height=400  # height of the table
-,padding={'right':-35}
 )
 text2 = bars2.mark_text(
     align='center',
@@ -138,7 +144,6 @@ stream3= alt.Chart(abd, title=plot_title).mark_area().encode(
 ).properties(
 width=900 # controls width of bar.
 , height=415  # height of the table
-,padding={'right':-70}
 ).interactive()
 #.add_params(
 #    selection
@@ -156,7 +161,6 @@ hist4 =alt.Chart(source, title=plot_title).mark_circle(color="#0905AF").encode(
 ).properties(
 width=850 # controls width of bar.
 , height=445  # height of the table
-,padding={'right':-58}
 )
 graph4 =hist4 
 
@@ -164,41 +168,23 @@ graph4 =hist4
 
 # 5. Radial chart
 
-
-opp_exp_chart_5_radial=pd.DataFrame({"values": ['Email', 'Programatic', 'Social', 'Direct mail'],"values1": [30, 10, 13, 50]})
-# opp_exp_chart_5_radial=run_store(f"SELECT * FROM {chart5};")
-opp_exp_chart_5_radial.columns=['Omni Channel Category', 'Count']
+source=pd.DataFrame({"values": ['i.Email', 'ii.Programatic', 'iii.Social', 'iv.Direct mail'],"values1": [30, 10, 13, 50]})
+# columns=["a", "b", "c"])
 plot_title = alt.TitleParams("Omni-Channel Reach",dx=70)
-base = alt.Chart(opp_exp_chart_5_radial, title=plot_title).encode(
-    theta=alt.Theta("Count", stack=True),
-    radius=alt.Radius("Count", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
-    order=alt.Order("Count",type="quantitative", sort= "ascending"),
-    color=alt.Color("Omni Channel Category",scale=alt.Scale(scheme='rainbow'),)
-).properties(
-padding={'right':-30}
+base = alt.Chart(source, title=plot_title).encode(
+    theta=alt.Theta("values1", stack=True),
+    radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
+    # radius=alt.Radius("values", scale=alt.Scale(['a','b','c','d'])),
+    # labels=["a", "b", "c"],
+    color=alt.Color("values",scale=alt.Scale(scheme='rainbow'),)
 )
 
 
+c1 = base.mark_arc(innerRadius=20, stroke="#fff")
 
-graph5 = base.mark_arc(innerRadius=20, stroke="#fff")
+c2 = base.mark_text(radiusOffset=20, size=18, dx=8, dy=-5).encode(text="values1",  color = alt.value("#0905AF"))
 
-# source=pd.DataFrame({"values": ['i.Email', 'ii.Programatic', 'iii.Social', 'iv.Direct mail'],"values1": [30, 10, 13, 50]})
-# # columns=["a", "b", "c"])
-# plot_title = alt.TitleParams("Omni-Channel Reach",dx=70)
-# base = alt.Chart(source, title=plot_title).encode(
-#     theta=alt.Theta("values1", stack=True),
-#     radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
-#     # radius=alt.Radius("values", scale=alt.Scale(['a','b','c','d'])),
-#     # labels=["a", "b", "c"],
-#     color=alt.Color("values",scale=alt.Scale(scheme='rainbow'),)
-# )
-
-
-# c1 = base.mark_arc(innerRadius=20, stroke="#fff")
-
-# c2 = base.mark_text(radiusOffset=20, size=18, dx=8, dy=-5).encode(text="values1",  color = alt.value("#0905AF"))
-
-# graph5= (c1)
+graph5= (c1)
 
 # 6. Hexbin chart
 size =40
