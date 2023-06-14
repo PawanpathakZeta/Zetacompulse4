@@ -55,7 +55,7 @@ col2.image(zeta_logo)
 
 match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
 plot_title = alt.TitleParams("Match distribution",dx=65)
-pie1=alt.Chart(opp_exp_chart_1_pie).mark_arc(innerRadius=15, stroke="#fff").encode(
+pie1=alt.Chart(match_rate).mark_arc(innerRadius=15, stroke="#fff").encode(
     theta=alt.Theta("Count:Q", stack=True),
     radius=alt.Radius("Count", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
     order=alt.Order("Count",type="quantitative", sort= "ascending"),
