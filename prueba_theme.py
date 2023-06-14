@@ -486,12 +486,21 @@ with col3:
     # st.altair_chart(chart3, use_container_width=True)
 
 # options = st.multiselect('Select your competitor',('Company', 'Competitor B'))
+# if ('Competitor B' in options) &('Company' in options):
+#     line_ab    
+# elif 'Competitor B' in options:
+#     line_b
+# else:
+#     line_a
+
 if ('Competitor B' in options) &('Company' in options):
-    line_ab    
+    st.altair_chart(line_ab, use_container_width=True)
+    # line_ab    
 elif 'Competitor B' in options:
-    line_b
+    st.altair_chart(line_b, use_container_width=True)
+    # line_b
 else:
-    line_a
+    st.altair_chart(line_a, use_container_width=True)
 # st.markdown('<div style="text-align: left;">&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;Conversions predictions and comparison based on different clients</div>', unsafe_allow_html=True)
 st.markdown('<div style="text-align: center;">Conversions predictions and comparison based on different clients</div>', unsafe_allow_html=True)
 # st.text('.                                                                Conversions predictions and comparison based on different clients')
