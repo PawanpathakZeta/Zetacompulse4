@@ -104,7 +104,7 @@ data_signal_matches = pd.DataFrame({"Field": ['Data Signal Matches', 'Data Signa
                                 ,"Percent" :[0.93, 0.87, 0.84, 0.96, 0.75  ]
                                 ,"Value": [70, 65, 63, 72, 56]})
 
-plot_title = alt.TitleParams("Data Signal Matches",dx=90)
+plot_title = alt.TitleParams("Data Signal Matches",dx=50)
 bars2 = alt.Chart(data_signal_matches, title= plot_title
 ).transform_joinaggregate(
     TotalValue='sum(Value)',
@@ -114,15 +114,12 @@ bars2 = alt.Chart(data_signal_matches, title= plot_title
 alt.X('Field metric:N',  title=None),
 alt.Y('PercentOfTotal:Q', axis=None),
 alt.Color("Field metric:N", )
-).properties(
-width=800 # controls width of bar.
-, height=400  # height of the table
 )
 text2 = bars2.mark_text(
     align='center',
     baseline='middle',
     dx=0,dy=-15, # Nudges text to right so it doesn't appear on top of the bar
-    size =20
+    size =10
 ).encode(
     text= alt.Text('PercentOfTotal:Q', format ='.0%')
     ,color = alt.value("#0905AF")
