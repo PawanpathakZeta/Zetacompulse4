@@ -435,7 +435,7 @@ with col2:
 with col3:
     st.header("  ")
     # graph2
-    st.altair_chart(graph2)
+    st.altair_chart(graph2, use_container_width=True)
     st.markdown('<div style="text-align: center;">Zeta can enrich upwards of 96% of customer records</div>', unsafe_allow_html=True)  
     # st.text(".               Zeta can enrich upwards of 96% of customer records")
     st.header("  ")
