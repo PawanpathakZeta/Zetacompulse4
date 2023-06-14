@@ -42,8 +42,8 @@ st.markdown(f""" <style>
 col1, col2 = st.columns([13, 2])
 
 ## Header
-col1.title('Zeta Competitor Pulse - Level 1 Insights')
-"""Competitive Intelligence and Insights Using Zeta Data"""
+col1.title('Zeta Customer Growth Intelligence')
+"""Growth Intelligence & Insights Using Zeta Data"""
 
 ## Zeta Logo
 #zeta_logo = Image.open('ZETA_BIG-99e027c9.webp') #white logo 
