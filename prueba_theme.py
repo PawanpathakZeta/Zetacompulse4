@@ -273,13 +273,16 @@ hexbin= alt.Chart(source, title=plot_title).mark_point(size=size*(size/2), shape
                                            , values=(1, 2,3,4,5,6,7,8,9,10,11,12)
                                            ,labelAngle= 0)),
     y=alt.Y('LAST_CLICK_DAY:O', axis=alt.Axis(title='Day of the week', labelPadding=20, tickOpacity=0, domainOpacity=0)),
+    #stroke=alt.value('black'),
     strokeWidth=alt.value(0.2),
-    fill=alt.Color('mean(Click Count):Q',  legend=alt.Legend(title='Click Count')), #scale =
-    tooltip=['LAST_CLICK_WEEK_DAY:O', 'LAST_CLICK_DAY:O', 'mean(Click Count):Q']
+
+    fill=alt.Color('mean(CLICK_COUNT):Q',  legend=alt.Legend(title='Key')), #scale =
+    # fill=alt.Color('mean(CLICK_COUNT):Q'), #scale = 
+    tooltip=['LAST_CLICK_DATE:O', 'LAST_CLICK_DAY:O', 'mean(CLICK_COUNT):Q']
 ).transform_calculate(
     # This field is required for the hexagonal X-Offset
-    xFeaturePos='( datum.LAST_CLICK_DAY % 2) / 2 + datum.LAST_CLICK_WEEK_DAY'
-    
+    xFeaturePos='( datum.LAST_CLICK_DAY % 2) / 2 + datum.LAST_CLICK_DATE'
+      
 ).properties(
     # Exact scaling factors to make the hexbins fit
     width=size * xFeaturesCount * 2 *0.985,
