@@ -268,7 +268,7 @@ source = source[['LAST_CLICK_DATE', 'LAST_CLICK_DAY', 'CLICK_COUNT']]
 
 
 plot_title = alt.TitleParams("Click Behavior of the Day across Months",dx=30)
-hexbin= alt.Chart(opp_exp_chart_6_hexbin, title=plot_title).mark_point(size=size*(size/2), shape=hexagon).encode(
+hexbin= alt.Chart(source, title=plot_title).mark_point(size=size*(size/2), shape=hexagon).encode(
     x=alt.X('xFeaturePos:N', axis=alt.Axis(title='Month', grid=False, tickOpacity=10, domainOpacity=10 
                                            , values=(1, 2,3,4,5,6,7,8,9,10,11,12)
                                            ,labelAngle= 0)),
