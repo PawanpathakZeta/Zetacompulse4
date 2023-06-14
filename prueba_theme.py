@@ -53,30 +53,44 @@ col2.image(zeta_logo)
 
 # 1. Pie chart
 
-match_rate = pd.DataFrame({"values": ['v_match_email', 'iv_match_phone', 'iii_match_name', 'ii_unmatch','i_unknown'],"values1": [1800, 1404, 675, 469,200]})
-# match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
-plot_title = alt.TitleParams("Match distribution",dx=80)
+match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
+plot_title = alt.TitleParams("Match distribution",dx=65)
 pie1=alt.Chart(match_rate).mark_arc(innerRadius=15, stroke="#fff").encode(
-    theta=alt.Theta("values1", stack=True),
-    radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
-    color=alt.Color("values")
-    # tooltip=["values", "values1"] ## Displays tooltip
+    theta=alt.Theta("Count:Q", stack=True),
+    radius=alt.Radius("Count", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
+    order=alt.Order("Count",type="quantitative", sort= "ascending"),
+    color=alt.Color("Match Category:N")
 ).properties(
     height=400, width=400,
     title=plot_title
 )
-# pie1.configure_title(
-#     fontSize=20,
-#     font='Courier',
-#     anchor='start',
-#     color='gray',
-#     # subtitlePadding=20,
-#     dx=200
+graph1 = pie1.mark_arc(innerRadius=20, stroke="#fff")
+
+
+# match_rate = pd.DataFrame({"values": ['v_match_email', 'iv_match_phone', 'iii_match_name', 'ii_unmatch','i_unknown'],"values1": [1800, 1404, 675, 469,200]})
+# # match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
+# plot_title = alt.TitleParams("Match distribution",dx=80)
+# pie1=alt.Chart(match_rate).mark_arc(innerRadius=15, stroke="#fff").encode(
+#     theta=alt.Theta("values1", stack=True),
+#     radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
+#     color=alt.Color("values")
+#     # tooltip=["values", "values1"] ## Displays tooltip
+# ).properties(
+#     height=400, width=400,
+#     title=plot_title
 # )
-c1 = pie1.mark_arc(innerRadius=20, stroke="#fff")
+# # pie1.configure_title(
+# #     fontSize=20,
+# #     font='Courier',
+# #     anchor='start',
+# #     color='gray',
+# #     # subtitlePadding=20,
+# #     dx=200
+# # )
+# c1 = pie1.mark_arc(innerRadius=20, stroke="#fff")
 
 
-graph1= c1
+# graph1= c1
 
 #graph1= pie
 
