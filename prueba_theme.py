@@ -53,13 +53,13 @@ col2.image(zeta_logo)
 
 # 1. Pie chart
 
-match_rate = pd.DataFrame({"values": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
+match_rate = pd.DataFrame({"Match Category": ['unknown', 'unmatch', 'match_name', 'match_phone','match_email'],"values1": [200, 469, 675, 1404,1800]})
 plot_title = alt.TitleParams("Match distribution",dx=65)
 pie1=alt.Chart(match_rate).mark_arc(innerRadius=15, stroke="#fff").encode(
     theta=alt.Theta("values1:Q", stack=True),
     radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True,rangeMin=20)),
     order=alt.Order("values1",type="quantitative", sort= "ascending"),
-    color=alt.Color("values:N")
+    color=alt.Color("Match Category:N")
 ).properties(
     height=400, width=400,
     title=plot_title
@@ -156,8 +156,9 @@ stream3= alt.Chart(abd, title=plot_title).mark_area().encode(
     alt.Color('series:N',scale=alt.Scale(scheme='category20b'))
     #opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
 ).properties(
-width=900 # controls width of bar.
+width=1200 # controls width of bar.
 , height=415  # height of the table
+,padding={'right':-70}
 ).interactive()
 #.add_params(
 #    selection
@@ -175,6 +176,7 @@ hist4 =alt.Chart(source, title=plot_title).mark_circle(color="#0905AF").encode(
 ).properties(
 width=850 # controls width of bar.
 , height=445  # height of the table
+,padding={'right':-58}
 )
 graph4 =hist4 
 
@@ -182,23 +184,37 @@ graph4 =hist4
 
 # 5. Radial chart
 
-source=pd.DataFrame({"values": ['i.Email', 'ii.Programatic', 'iii.Social', 'iv.Direct mail'],"values1": [30, 10, 13, 50]})
-# columns=["a", "b", "c"])
+
+opp_exp_chart_5_radial=pd.DataFrame({"Omni Channel Category": ['Email', 'Programatic', 'Social', 'Direct mail'],"Count": [30, 10, 13, 50]})
+# opp_exp_chart_5_radial=run_store(f"SELECT * FROM {chart5};")
+opp_exp_chart_5_radial.columns=['Omni Channel Category', 'Count']
 plot_title = alt.TitleParams("Omni-Channel Reach",dx=70)
-base = alt.Chart(source, title=plot_title).encode(
-    theta=alt.Theta("values1", stack=True),
-    radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
-    # radius=alt.Radius("values", scale=alt.Scale(['a','b','c','d'])),
-    # labels=["a", "b", "c"],
-    color=alt.Color("values",scale=alt.Scale(scheme='rainbow'),)
+base = alt.Chart(opp_exp_chart_5_radial, title=plot_title).encode(
+    theta=alt.Theta("Count", stack=True),
+    radius=alt.Radius("Count", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
+    order=alt.Order("Count",type="quantitative", sort= "ascending"),
+    color=alt.Color("Omni Channel Category",scale=alt.Scale(scheme='rainbow'),)
+).properties(
+padding={'right':-30}
 )
+graph5 = base.mark_arc(innerRadius=20, stroke="#fff")
+# source=pd.DataFrame({"values": ['i.Email', 'ii.Programatic', 'iii.Social', 'iv.Direct mail'],"values1": [30, 10, 13, 50]})
+# # columns=["a", "b", "c"])
+# plot_title = alt.TitleParams("Omni-Channel Reach",dx=70)
+# base = alt.Chart(source, title=plot_title).encode(
+#     theta=alt.Theta("values1", stack=True),
+#     radius=alt.Radius("values1", scale=alt.Scale(type="sqrt", zero=True, rangeMin=20)),
+#     # radius=alt.Radius("values", scale=alt.Scale(['a','b','c','d'])),
+#     # labels=["a", "b", "c"],
+#     color=alt.Color("values",scale=alt.Scale(scheme='rainbow'),)
+# )
 
 
-c1 = base.mark_arc(innerRadius=20, stroke="#fff")
+# c1 = base.mark_arc(innerRadius=20, stroke="#fff")
 
-c2 = base.mark_text(radiusOffset=20, size=18, dx=8, dy=-5).encode(text="values1",  color = alt.value("#0905AF"))
+# c2 = base.mark_text(radiusOffset=20, size=18, dx=8, dy=-5).encode(text="values1",  color = alt.value("#0905AF"))
 
-graph5= (c1)
+# graph5= (c1)
 
 # 6. Hexbin chart
 size =40
