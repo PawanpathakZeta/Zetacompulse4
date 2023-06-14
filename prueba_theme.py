@@ -238,21 +238,47 @@ click_count =  pd.read_csv('tableau_data/click_count.csv')#, encoding='utf_16', 
 
 source = result = pd.concat([las_click_date, las_click_day,click_count ], axis=1)
 source = source[['LAST_CLICK_DATE', 'LAST_CLICK_DAY', 'CLICK_COUNT']]
+# plot_title = alt.TitleParams("Click Behavior of the Day across Months",dx=30)
+# hexbin= alt.Chart(source, title=plot_title).mark_point(size=size*(size/2), shape=hexagon).encode(
+#     x=alt.X('xFeaturePos:N', axis=alt.Axis(title='Month', grid=False, tickOpacity=10, domainOpacity=10 
+#                                            , values=(1, 2,3,4,5,6,7,8,9,10,11,12)
+#                                            ,labelAngle= 0)),
+#     y=alt.Y('LAST_CLICK_DAY:O', axis=alt.Axis(title='Day of the week', labelPadding=20, tickOpacity=0, domainOpacity=0)),
+#     #stroke=alt.value('black'),
+#     strokeWidth=alt.value(0.2),
+
+#     fill=alt.Color('mean(CLICK_COUNT):Q',  legend=alt.Legend(title='Key')), #scale =
+#     # fill=alt.Color('mean(CLICK_COUNT):Q'), #scale = 
+#     tooltip=['LAST_CLICK_DATE:O', 'LAST_CLICK_DAY:O', 'mean(CLICK_COUNT):Q']
+# ).transform_calculate(
+#     # This field is required for the hexagonal X-Offset
+#     xFeaturePos='( datum.LAST_CLICK_DAY % 2) / 2 + datum.LAST_CLICK_DATE'
+    
+# ).properties(
+#     # Exact scaling factors to make the hexbins fit
+#     width=size * xFeaturesCount * 2 *0.985,
+#     height=size * yFeaturesCount * 1.7320508076 *0.985,  # 1.7320508076 is approx. sin(60°)*2
+#     padding={'left':5,'right':10}  # 1.7320508076 is approx. sin(60°)*2
+# ).configure_view(
+#     strokeWidth=0
+# )
+
+# graph6 = hexbin
+
+
+
 plot_title = alt.TitleParams("Click Behavior of the Day across Months",dx=30)
-hexbin= alt.Chart(source, title=plot_title).mark_point(size=size*(size/2), shape=hexagon).encode(
+hexbin= alt.Chart(opp_exp_chart_6_hexbin, title=plot_title).mark_point(size=size*(size/2), shape=hexagon).encode(
     x=alt.X('xFeaturePos:N', axis=alt.Axis(title='Month', grid=False, tickOpacity=10, domainOpacity=10 
                                            , values=(1, 2,3,4,5,6,7,8,9,10,11,12)
                                            ,labelAngle= 0)),
     y=alt.Y('LAST_CLICK_DAY:O', axis=alt.Axis(title='Day of the week', labelPadding=20, tickOpacity=0, domainOpacity=0)),
-    #stroke=alt.value('black'),
     strokeWidth=alt.value(0.2),
-
-    fill=alt.Color('mean(CLICK_COUNT):Q',  legend=alt.Legend(title='Key')), #scale =
-    # fill=alt.Color('mean(CLICK_COUNT):Q'), #scale = 
-    tooltip=['LAST_CLICK_DATE:O', 'LAST_CLICK_DAY:O', 'mean(CLICK_COUNT):Q']
+    fill=alt.Color('mean(Click Count):Q',  legend=alt.Legend(title='Click Count')), #scale =
+    tooltip=['LAST_CLICK_WEEK_DAY:O', 'LAST_CLICK_DAY:O', 'mean(Click Count):Q']
 ).transform_calculate(
     # This field is required for the hexagonal X-Offset
-    xFeaturePos='( datum.LAST_CLICK_DAY % 2) / 2 + datum.LAST_CLICK_DATE'
+    xFeaturePos='( datum.LAST_CLICK_DAY % 2) / 2 + datum.LAST_CLICK_WEEK_DAY'
     
 ).properties(
     # Exact scaling factors to make the hexbins fit
