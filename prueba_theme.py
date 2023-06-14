@@ -147,14 +147,15 @@ abd.loc[abd["series"] == "Education and Health", "series"] = "Office, Electronic
 abd.loc[abd["series"] == "Leisure and hospitality", "series"] = "Restaurant" #
 abd.loc[abd["series"] == "Other", "series"] = "Specialty Retail" #
 abd.loc[abd["series"] == "Self-employed", "series"] = "Travel" #
+abd=abd.rename(columns={'series': 'Transactional Category'})
 
 #selection = alt.selection_point(fields=['series'], bind='legend')
-abd.columns=['Transactional Category',  'Count',  'Date']
+
 plot_title = alt.TitleParams("Transactional Category",dx=70)
 stream3= alt.Chart(abd, title=plot_title).mark_area().encode(
     # alt.X('yearmonth(date2):T', axis=alt.Axis(domain=True, format='%Y', tickSize=0) , title=None),
-    alt.X('Date:T'),
-    alt.Y('sum(Count):Q', stack='center', axis=None),
+    alt.X('date2:T'),
+    alt.Y('sum(count):Q', stack='center', axis=None),
     alt.Color('Transactional Category:N',scale=alt.Scale(scheme='category20b'))
     #opacity=alt.condition(selection, alt.value(1), alt.value(0.2))
 ).properties(
